@@ -76,7 +76,6 @@ char *handle_path(char **commands, int count, char **env)
 		if (pid == 0)
 		{
 			execve(path, commands, env);
-			printf("do I come here");
 			exit(127);
 		}
 		else if (pid > 0)
@@ -95,8 +94,7 @@ char *handle_path(char **commands, int count, char **env)
 	else
 	{
 		print_commanderr(commands[0], count);
+		free(path);
 		errno = 127;
-		printf("do I come here");
-		exit(errno);
 	} 
 	return (NULL); }
