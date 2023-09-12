@@ -2,7 +2,7 @@
 
 
 /**
-  * main - simple_shell initializztion.
+  * main - simple_shell initialization.
   *@ac: argument counter.
   *@av: array of arguments.
   * Return: 0 if shell exits;
@@ -14,7 +14,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 	char *prompt = "(MY_SHELL) : ";
 	size_t n;
 	ssize_t read;
-	int count = 0;
+	int count = 0, b = 0;
 	int mode = isatty(0);
 
 	while (1)
@@ -35,8 +35,18 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 			continue;
 		handledline = handle_line(line);
 		commands = com_arr(handledline, " \n\t\r");
-		handle_path(commands, count, env);
-		free_arr(commands);
+		if (commands != NULL)
+		{
+			b = builtin_checker(commands[0]);
+			if (b == -1)
+				handle_path(commands, count, env);
+			else
+			{
+				free(handledline);
+				handle_builtin(b, commands, count);
+			}
+			free_arr(commands);
+		}
 	}
 	free(handledline);
 	exit(errno);

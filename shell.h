@@ -23,5 +23,12 @@ char *print_number(int count);
 void print_commanderr(char *command, int count);
 int command_count(char **commands);
 
+int builtin_checker(char *command);
+int handle_builtin(int m, char **commands, int count);
+void my_exit(char **commands, int count);
+void my_env(void);
+int _isdigit(char *number);
+int _atoi(char *str);
+
 #endif
 
