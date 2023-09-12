@@ -39,7 +39,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 		{
 			b = builtin_checker(commands[0]);
 			if (b == -1)
-				handle_path(commands, count, env);
+				handle_path(commands, count, NULL);
 			else
 				handle_builtin(b, commands, count, handledline, env);
 			free_arr(commands);
