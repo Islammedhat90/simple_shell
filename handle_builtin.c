@@ -32,7 +32,7 @@ int builtin_checker(char *command)
  * Return: 0 if successful, -1 on error or unknown command.
  */
 
-int handle_builtin(int m, char **commands, int count, char *handledline)
+int handle_builtin(int m, char **commands, int count, char *handledline, char **env)
 {
         if (m == -1)
             return (-1);
@@ -42,7 +42,7 @@ int handle_builtin(int m, char **commands, int count, char *handledline)
                     my_exit(commands, count, handledline);
                     return (0);
             case 1:
-                    my_env();
+                    my_env(env);
                     return (1);
             default:
                     return (-1);

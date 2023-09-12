@@ -37,9 +37,8 @@ void my_exit(char **commands, int count, char *handledline)
   * Return: nothing.
   */
 
-void my_env(void)
+void my_env(char **env)
 {
-        char **env = environ;
         int i = 0;
 
         for (; env[i] != NULL; i++)
