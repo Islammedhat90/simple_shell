@@ -41,10 +41,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 			if (b == -1)
 				handle_path(commands, count, env);
 			else
-			{
-				free(handledline);
-				handle_builtin(b, commands, count);
-			}
+				handle_builtin(b, commands, count, handledline);
 			free_arr(commands);
 		}
 	}

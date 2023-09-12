@@ -6,7 +6,7 @@
   * Return: nothing.
   */
 
-void my_exit(char **commands, int count)
+void my_exit(char **commands, int count, char *handledline)
 {
         int status;
 
@@ -16,6 +16,7 @@ void my_exit(char **commands, int count)
             {
                 status = _atoi(commands[1]);
                 free_arr(commands);
+                free(handledline);
                 exit(status);
             }
             else
@@ -25,6 +26,7 @@ void my_exit(char **commands, int count)
             }
         }
         status = errno;
+        free(handledline);
         free_arr(commands);
         exit(status);
 }
