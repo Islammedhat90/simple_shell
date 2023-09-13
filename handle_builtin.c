@@ -10,11 +10,11 @@
 int builtin_checker(char *command)
 {
         int i = 0;
-        char *builtin[] = {"exit", "env"};
+        char *builtin[] = {"exit", "env", "setenv", "unsetenv"};
 
         if (command != NULL)
         {
-            for (; i < 2; i++)
+            for (; i < 4; i++)
             {
                 if (strcmp(command, builtin[i]) == 0)
                     return (i);
@@ -38,14 +38,19 @@ int handle_builtin(int m, char **commands, int count, char *handledline, char **
             return (-1);
         switch (m)
         {
-            case 0:
-                    my_exit(commands, count, handledline);
-                    return (0);
-            case 1:
-                    my_env(env);
-                    return (1);
-            default:
-                    return (-1);
+                case 0:
+                        my_exit(commands, count, handledline);
+                        return (0);
+                case 1:
+                        my_env(env);
+                        return (1);
+                case 2:
+                        my_setenv(commands, env);
+                        return (2);
+                case 3:
+                        return (-1);
+                default:
+                        return (-1);
+
         }
-        return (0);
 }

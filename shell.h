@@ -27,6 +27,8 @@ int builtin_checker(char *command);
 int handle_builtin(int m, char **commands, int count, char *handledline, char **env);
 void my_exit(char **commands, int count, char *handledline);
 void my_env(char **env);
+int _setenv(char *var, char *value, char **env);
+int my_setenv(char **commands, char **env);
 int _isdigit(char *number);
 int _atoi(char *str);
 
