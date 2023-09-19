@@ -31,7 +31,7 @@ char *_getenv(char *var)
 int _setenv(char *var, char *value, char **env)
 {
 		char *new = NULL;
-		int i = 0, flag = -1;
+		int flag = -1;
 		size_t len = 0;
 
 		if (var == NULL || value == NULL)
@@ -46,19 +46,19 @@ int _setenv(char *var, char *value, char **env)
 		strcat(new, var);
 		strcat(new, "=");
 		strcat(new, value);
-		while(env[i] != NULL)
+		while(*env != NULL)
 		{
-				if (strncmp(var, env[i], len) == 0)
+				if (strncmp(var, *env, len) == 0)
 				{
-						env[i] = new;
+						*env = new;
 						flag = 1;
 				}
-				i++;
+				env++;
 		}
 		if (flag != 1)
 		{
-			env[i] = new;
-			env[i + 1] = NULL;
+			*env = new;
+			*env++ = NULL;
 		}
 		return (0);
 }

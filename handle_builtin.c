@@ -10,11 +10,11 @@
 int builtin_checker(char *command)
 {
         int i = 0;
-        char *builtin[] = {"exit", "env", "setenv", "unsetenv"};
+        char *builtin[] = {"exit", "env", "setenv", "unsetenv", "cd"};
 
         if (command != NULL)
         {
-            for (; i < 4; i++)
+            for (; i < 5; i++)
             {
                 if (strcmp(command, builtin[i]) == 0)
                     return (i);
