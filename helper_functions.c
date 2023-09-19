@@ -2,9 +2,9 @@
 
 /**
  * _isdigit - Check if a string  is all digits (0-9)
- * @c: The character to be checked
+ * @number: number to be checked
  *
- * Return: 1 if c is a digit, 0 otherwise
+ * Return: 1 if number is a digit, 0 otherwise
  */
 int _isdigit(char *number)
 {
@@ -18,28 +18,28 @@ int _isdigit(char *number)
 	return (0);
 }
 /**
- * my_atoi - Converts a string to an integer.
+ * _atoi - Converts a string to an integer.
  * @str: The input string to convert.
  *
  * Return: The integer value of the input string.
  */
 
-int _atoi(char *str) 
+int _atoi(char *str)
 {
-    int result = 0;
-    int sign = 1;
-    int i = 0;
+	int result = 0;
+	int sign = 1;
+	int i = 0;
 
-    while (str[i] == ' ' || str[i] == '\t') {
-        i++;
-    }
-    if (str[i] == '-' || str[i] == '+') {
-        sign = (str[i++] == '-') ? -1 : 1;
-    }
-    while (str[i] >= '0' && str[i] <= '9') {
-        result = result * 10 + (str[i] - '0');
-        i++;
-    }
-
-    return result * sign;
+	while (str[i] == ' ' || str[i] == '\t')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		sign = (str[i++] == '-') ? -1 : 1;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (result * sign);
 }

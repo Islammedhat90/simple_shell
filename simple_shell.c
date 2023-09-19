@@ -5,10 +5,12 @@
   * main - simple_shell initialization.
   *@ac: argument counter.
   *@av: array of arguments.
+  *@env: environment variable.
   * Return: 0 if shell exits;
   */
 
-int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char **env)
+int main(__attribute__((unused))int ac,
+__attribute__((unused))char **av, char **env)
 {
 	char *line = NULL, **commands = NULL, *handledline = NULL;
 	char *prompt = "(MY_SHELL) : ";
@@ -44,10 +46,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av, char *
 					handle_path(commands, count, env);
 				else
 					handle_builtin(b, commands, count, handledline, env);
-				free_arr(commands);
-			}
-		}
-	}
+				free_arr(commands); } } }
 	free(handledline);
 	exit(errno);
 	return (0);

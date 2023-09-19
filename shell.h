@@ -18,13 +18,15 @@ char *handle_line(char *line);
 int line_checker(char *line);
 char *get_path(char *command);
 char *handle_path(char **commands, int count, char **env);
+void _execute(char *path, char **commands, char **env, int count);
 int print_error(char *command, int count);
 char *print_number(int count);
 void print_commanderr(char *command, int count);
 int command_count(char **commands);
 
 int builtin_checker(char *command);
-int handle_builtin(int m, char **commands, int count, char *handledline, char **env);
+int handle_builtin(int m, char **commands,
+int count, char *handledline, char **env);
 void my_exit(char **commands, int count, char *handledline);
 void my_env(char **env);
 int _setenv(char *var, char *value, char **env);

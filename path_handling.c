@@ -43,13 +43,13 @@ char *get_path(char *command)
   * handle_path - function that executes the command with path
   * @commands: double pointer holding all commands and arguments.
   * @count: second argument
+  * @env: environment variable.
   * Return: nothing.
   */
 
 char *handle_path(char **commands, int count, char **env)
 {
 	char *path = NULL;
-	pid_t pid;
 
 	if (commands == NULL)
 		exit(EXIT_FAILURE);
@@ -70,6 +70,23 @@ char *handle_path(char **commands, int count, char **env)
 		errno = 127;
 		return (NULL);
 	}
+	_execute(path, commands, env, count);
+	return (NULL);
+}
+
+/**
+ * _execute - Execute a command with given path, arguments, and environment.
+ * @path: The path to the executable command.
+ * @commands: An array of command arguments, including the command itself.
+ * @env: The environment variables to be used during execution.
+ * @count: The count of executed commands.
+ * Return: No return value.
+ */
+
+void _execute(char *path, char **commands, char **env, int count)
+{
+	pid_t pid;
+
 	if (access(path, X_OK) == 0)
 	{
 		pid = fork();
@@ -85,16 +102,19 @@ char *handle_path(char **commands, int count, char **env)
 			wait(&status);
 			if (WIFEXITED(status))
 				errno = WEXITSTATUS(status);
-			free(path); }
+			free(path);
+		}
 		else
 		{
 			perror("fork failed");
 			free(path);
-			print_error(commands[0], count); } }
+			print_error(commands[0], count);
+		}
+	}
 	else
 	{
 		print_commanderr(commands[0], count);
 		free(path);
 		errno = 127;
-	} 
-	return (NULL); }
+	}
+}
