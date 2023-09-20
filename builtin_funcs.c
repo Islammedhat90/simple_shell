@@ -70,7 +70,7 @@ int my_cd(char **commands, __attribute__((unused))char **env)
 
 	if (count == 1)
 	{
-		dir = "/root";
+		dir = _getenv("HOME");
 	}
 	else if (commands[1][0] == '-')
 	{
