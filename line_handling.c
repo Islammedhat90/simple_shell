@@ -62,14 +62,19 @@ int operatorcheck(char *line, int count, char **env)
 	while (line[i] != '\0')
 	{
 		if (line[i] == ';' && line[i + 1] != ';')
-		{
 			check = 1;
-		}
+		if (line[i] == '&' && line[i + 1] != '&')
+			check = 2;
 		i++;
 	}
 	if (check == 1)
 	{
-		handle_operator(line, count, env);
+		handle_operator(line, count, env, ";");
+		return (0);
+	}
+	if (check == 2)
+	{
+		handle_operator(line, count, env, "&&");
 		return (0);
 	}
 	return (-1);
@@ -83,20 +88,22 @@ int operatorcheck(char *line, int count, char **env)
  * Return: Always returns 0.
  */
 
-int handle_operator(char *line, int count, char **env)
+int handle_operator(char *line, int count, char **env, char *delim)
 {
 	int i = 0;
 	int num = 0;
 	char **split = NULL;
 	char **commands = NULL;
 
-	split = com_arr(line, ";");
+	split = com_arr(line, delim);
 	num = command_count(split);
 	for (; i < num; i++)
 	{
 		commands = com_arr(split[i], " \n\t\r");
 		handle_path(commands, count, env);
 		free_arr(commands);
+		if (errno != 0 && (strcmp(delim, "&&") == 0))
+			break;
 	}
 	free_arr(split);
 	return (0);

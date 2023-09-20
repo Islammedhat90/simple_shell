@@ -39,7 +39,7 @@ int my_cd(char **commands, char **env, int count);
 int _isdigit(char *number);
 int _atoi(char *str);
 
-int handle_operator(char *line, int count, char **env);
+int handle_operator(char *line, int count, char **env, char *delim);
 int operatorcheck(char *line, int count, char **env);
 
 #endif
