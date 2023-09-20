@@ -54,7 +54,6 @@ int _setenv(char *var, char *value, char **env)
 		{
 			env[i] = new;
 			flag = 1;
-			printf("I don't come here?\n");
 		}
 		i++;
 	}
