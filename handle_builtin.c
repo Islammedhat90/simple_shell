@@ -52,7 +52,8 @@ char *handledline, char **env)
 			my_setenv(commands, env);
 			return (2);
 		case 3:
-			return (-1);
+			_unsetenv(commands, env);
+			return (3);
 		case 4:
 			my_cd(commands);
 			return (4);

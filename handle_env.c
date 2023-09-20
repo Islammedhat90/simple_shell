@@ -92,4 +92,36 @@ int my_setenv(char **commands, char **env)
 	return (-1);
 }
 
+int _unsetenv(char **commands, char **env)
+{
+	int count = 0, i = 0, j = 0, check = -1;
+	size_t len = 0;
 
+	count = command_count(commands);
+	if (count != 2)
+	{
+		perror("wrong arguments");
+		return (-1);
+	}
+	len = strlen(commands[1]);
+	while (env[i] != NULL)
+	{
+		if (strncmp(commands[1], env[i], len) == 0)
+		{
+			j = i;
+			while (env[j] != NULL)
+			{
+				env[j] = env[j + 1];
+				check = 1;
+				j++;
+			}
+		}
+		i++;
+	}
+	if (check != 1)
+	{
+		perror("Variable not found");
+		return (-1);
+	}
+	return (0);
+}
