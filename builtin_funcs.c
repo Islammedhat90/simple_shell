@@ -68,6 +68,10 @@ int my_cd(char **commands, __attribute__((unused))char **env)
 	int count = command_count(commands);
 	char *dir = NULL;
 
+	if (count > 2)
+	{
+		perror("./hsh: cd: too many arguments");
+	}
 	if (count == 1)
 	{
 		dir = _getenv("HOME");
@@ -90,6 +94,7 @@ int my_cd(char **commands, __attribute__((unused))char **env)
 		}
 		return (0);
 	}
+	
 	if (check == 1)
 		free(dir);
 	return (-1);
