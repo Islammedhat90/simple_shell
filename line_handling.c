@@ -50,7 +50,8 @@ int line_checker(char *line)
 /**
  * operatorcheck - Checks if multiple commands are separated by operators.
  * @line: The input line to check for operators.
- *
+ * @count: line count.
+ * @env: environment variable.
  * Return: 0 if operators found and handled, -1 otherwise.
  */
 
@@ -77,7 +78,8 @@ int operatorcheck(char *line, int count, char **env)
 /**
  * handle_operator - Handles multiple commands separated by operators.
  * @line: The input line containing multiple commands.
- *
+ * @count: line count.
+ * @env : environment variable.
  * Return: Always returns 0.
  */
 
