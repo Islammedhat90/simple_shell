@@ -24,6 +24,7 @@ void _execute(char *path, char **commands, char **env, int count);
 int print_error(char *command, int count);
 char *print_number(int count);
 void print_commanderr(char *command, int count);
+void print_cderror(char *command, int count);
 int command_count(char **commands);
 
 int builtin_checker(char *command);
@@ -34,7 +35,7 @@ void my_env(char **env);
 int _setenv(char *var, char *value, char **env);
 int my_setenv(char **commands, char **env);
 int _unsetenv(char **commands, char **env);
-int my_cd(char **commands, char **env);
+int my_cd(char **commands, char **env, int count);
 int _isdigit(char *number);
 int _atoi(char *str);
 

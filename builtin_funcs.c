@@ -59,20 +59,22 @@ void my_env(char **env)
 /**
  * my_cd - Change the current working directory.
  * @commands: An array of strings containing the command and arguments.
+ * @env: environment variable.
+ * @count: line count.
  * Return: 0 if success, -1 otherwise.
  */
 
-int my_cd(char **commands, __attribute__((unused))char **env)
+int my_cd(char **commands, __attribute__((unused))char **env, int count)
 {
 	int check = -1;
-	int count = command_count(commands);
+	int counts = command_count(commands);
 	char *dir = NULL;
 
-	if (count > 2)
+	if (counts > 2)
 	{
 		perror("./hsh: cd: too many arguments");
 	}
-	if (count == 1)
+	if (counts == 1)
 	{
 		dir = _getenv("HOME");
 	}
@@ -94,7 +96,7 @@ int my_cd(char **commands, __attribute__((unused))char **env)
 		}
 		return (0);
 	}
-	
+	print_cderror(commands[1], count);
 	if (check == 1)
 		free(dir);
 	return (-1);

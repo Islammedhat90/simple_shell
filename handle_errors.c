@@ -50,6 +50,20 @@ void print_commanderr(char *command, int count)
 	free(number);
 }
 
+void print_cderror(char *command, int count)
+{
+	char *number = print_number(count);
+
+	write(STDERR_FILENO, "./hsh", strlen("./hsh"));
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, number, strlen(number));
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, "cd: ", strlen("cd: "));
+	write(2, "can't cd to ", strlen("can't cd to "));
+	write(2, command, strlen(command));
+	write(2, "\n", 1);
+	free(number);
+}
 /**
  * print_number - Convert an integer to a string.
  * @n: The integer to convert.
