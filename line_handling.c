@@ -89,7 +89,7 @@ int operatorcheck(char *line, int count, char **env)
 	if (check == 4)
 	{
 		handle_dollar (line, count, env);
-		return(0);
+		return (0);
 	}
 	return (-1);
 }
@@ -138,7 +138,7 @@ int handle_operator(char *line, int count, char **env, char *delim)
 int handle_dollar(char *line, int count, char **env)
 {
 	int i = 0;
-	size_t j = 0;
+	size_t j = 0, x = 0;
 	char *number = NULL;
 	pid_t pid = getpid();
 	char **commands = NULL;
@@ -147,13 +147,12 @@ int handle_dollar(char *line, int count, char **env)
 	commands = com_arr(line, " \n\t\r");
 	while (commands[i] != NULL)
 	{
-		while (j < strlen(commands[i]))
+		while (x < strlen(commands[i]))
 		{
-			if (commands[i][j] == '$')
+			if (commands[i][x] == '$')
 				checkdollar = 1;
-			j++;
+			x++;
 		}
-		j = 0;
 		if (checkdollar == 1)
 		{
 			while (j < strlen(commands[i]))
@@ -173,7 +172,6 @@ int handle_dollar(char *line, int count, char **env)
 					errno = 0;
 					j++; }
 				j++; } }
-		j = 0;
 		i++; }
 	handle_path(commands, count, env);
 	free_arr(commands);
