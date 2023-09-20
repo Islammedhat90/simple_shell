@@ -41,7 +41,7 @@ int _isdigit(char *number);
 int _atoi(char *str);
 
 int handle_operator(char *line, int count, char **env, char *delim);
-int handle_dollar(char *line, char **env);
+int handle_dollar(char *line, int count, char **env);
 int operatorcheck(char *line, int count, char **env);
 
 #endif

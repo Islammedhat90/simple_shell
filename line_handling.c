@@ -88,7 +88,7 @@ int operatorcheck(char *line, int count, char **env)
 	}
 	if (check == 4)
 	{
-		handle_dollar(line, env);
+		handle_dollar (line, count, env);
 		return(0);
 	}
 	return (-1);
@@ -126,30 +126,50 @@ int handle_operator(char *line, int count, char **env, char *delim)
 	return (0);
 }
 
-int handle_dollar(char *line, __attribute__((unused))char **env)
+int handle_dollar(char *line, int count, char **env)
 {
 	int i = 0;
+	size_t j = 0;
 	char *number = NULL;
 	pid_t pid = getpid();
+	char **commands = NULL;
+	int checkdollar = -1;
 
-	while (line[i] != '\0')
+	commands = com_arr(line, " \n\t\r");
+	while (commands[i] != NULL)
 	{
-		if (line[i] == '$' && line[i + 1] == '$')
+		while (j < strlen(commands[i]))
 		{
-			number = print_number((int)pid);
-			write(1, number, strlen(number));
-			write(1, "\n", 1);
-			i++;
+			if (commands[i][j] == '$')
+				checkdollar = 1;
+			j++;
 		}
-		else if (line[i] == '$' && line[i + 1] == '?')
+		j = 0;
+		if (checkdollar == 1)
 		{
-			number = print_number(errno);
-			write(1, number, strlen(number));
-			write(1, "\n", 1);
-			errno = 0;
-			i++;
+			while (j < strlen(commands[i]))
+			{
+				if (commands[i][j] == '$' && commands[i][j + 1] == '$')
+				{
+					number = print_number((int)pid);
+					free(commands[i]);
+					commands[i] = number;
+					j++;
+				}
+				else if (commands[i][j] == '$' && commands[i][j + 1] == '?')
+				{
+					number = print_number(errno);
+					free(commands[i]);
+					commands[i] = number;
+					errno = 0;
+					j++;
+				}
+				j++;
+			}
 		}
+		j = 0;
 		i++;
 	}
+	handle_path(commands, count, env);
 	return (0);
 }
