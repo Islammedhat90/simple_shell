@@ -10,9 +10,8 @@
   */
 
 int main(__attribute__((unused))int ac,
-__attribute__((unused))char **av)
+__attribute__((unused))char **av, char **env)
 {
-	char **env = environ;
 	char *line = NULL, **commands = NULL, *handledline = NULL;
 	char *prompt = "(MY_SHELL) : ";
 	size_t n;

@@ -10,6 +10,7 @@
 
 extern char **environ;
 
+
 int free_arr(char **arr);
 char **com_arr(char *line, char *delim);
 void fill_array(char **commands, char *copy, char *delim);
@@ -31,7 +32,7 @@ int builtin_checker(char *command);
 int handle_builtin(int m, char **commands,
 int count, char *handledline, char **env);
 void my_exit(char **commands, int count, char *handledline);
-void my_env(void);
+void my_env(char **env);
 int _setenv(char *var, char *value, char **env);
 int my_setenv(char **commands, char **env);
 int _unsetenv(char **commands, char **env);

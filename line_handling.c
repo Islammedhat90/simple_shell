@@ -92,6 +92,7 @@ int operatorcheck(char *line, int count, char **env)
  * @line: The input line containing multiple commands.
  * @count: line count.
  * @env : environment variable.
+ * @delim: delimiter characters.
  * Return: Always returns 0.
  */
 

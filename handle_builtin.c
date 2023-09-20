@@ -46,7 +46,7 @@ char *handledline, char **env)
 			my_exit(commands, count, handledline);
 			return (0);
 		case 1:
-			my_env();
+			my_env(env);
 			return (1);
 		case 2:
 			my_setenv(commands, env);

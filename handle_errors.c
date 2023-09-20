@@ -50,6 +50,13 @@ void print_commanderr(char *command, int count)
 	free(number);
 }
 
+/**
+ * print_cderror - Print a "cd" command error message to standard error.
+ * @command: The command that resulted in the error.
+ * @count: The count of executed commands.
+ * Return: nothing.
+ */
+
 void print_cderror(char *command, int count)
 {
 	char *number = print_number(count);

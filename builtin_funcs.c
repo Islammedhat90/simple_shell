@@ -35,13 +35,12 @@ void my_exit(char **commands, int count, char *handledline)
 
 /**
   * my_env - function that prints current environment
-  *@env: environment variable.
+  * @env: environment variable.
   * Return: nothing.
   */
 
-void my_env(void)
+void my_env(char **env)
 {
-	char **env = environ;
 	int i = 0;
 
 	while (env[i] != NULL)
