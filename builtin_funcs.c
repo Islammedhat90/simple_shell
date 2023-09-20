@@ -62,13 +62,11 @@ void my_env(char **env)
  * Return: 0 if success, -1 otherwise.
  */
 
-int my_cd(char **commands, char **env)
+int my_cd(char **commands, __attribute__((unused))char **env)
 {
 	int check = -1;
 	int count = command_count(commands);
 	char *dir = NULL;
-
-	__attribute__((unused))char *cur = _getenv("PWD");
 
 	if (count == 1)
 	{
