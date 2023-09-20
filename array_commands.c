@@ -27,11 +27,11 @@ char **com_arr(char *line, char *delim)
 	}
 	strcpy(linecopy, line);
 	strcpy(copy, line);
-	token = _strtok(linecopy, delim);
+	token = strtok(linecopy, delim);
 	while (token != NULL)
 	{
 		command_count++;
-		token = _strtok(NULL, delim);
+		token = strtok(NULL, delim);
 	}
 	commands = malloc(sizeof(char *) * (command_count + 1));
 	if (commands == NULL)
@@ -59,7 +59,7 @@ void fill_array(char **commands, char *copy, char *delim)
 	char *token = NULL;
 	int i = 0;
 
-	token = _strtok(copy, delim);
+	token = strtok(copy, delim);
 	for (; token != NULL; i++)
 	{
 		commands[i] = strdup(token);
@@ -69,7 +69,7 @@ void fill_array(char **commands, char *copy, char *delim)
 			perror("Error allocating memory");
 			exit(EXIT_FAILURE);
 		}
-		token = _strtok(NULL, delim);
+		token = strtok(NULL, delim);
 	}
 }
 
