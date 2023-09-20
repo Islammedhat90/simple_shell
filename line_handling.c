@@ -67,6 +67,8 @@ int operatorcheck(char *line, int count, char **env)
 			check = 2;
 		if (line[i] == '|' && line[i + 1] != '|')
 			check = 3;
+		if (line[i] == '$')
+			check = 4;
 		i++;
 	}
 	if (check == 1)
@@ -83,6 +85,11 @@ int operatorcheck(char *line, int count, char **env)
 	{
 		handle_operator(line, count, env, "||");
 		return (0);
+	}
+	if (check == 4)
+	{
+		handle_dollar(line, env);
+		return(0);
 	}
 	return (-1);
 }
@@ -116,5 +123,24 @@ int handle_operator(char *line, int count, char **env, char *delim)
 			break;
 	}
 	free_arr(split);
+	return (0);
+}
+
+int handle_dollar(char *line, __attribute__((unused))char **env)
+{
+	int i = 0;
+	char *number = NULL;
+	pid_t pid = getpid();
+
+	while (line[i] != '\0')
+	{
+		if (line[i] == '$' && line[i + 1] == '$')
+		{
+			number = print_number((int)pid);
+			write(1, number, strlen(number));
+			write(1, "\n", 1);
+		}
+		i++;
+	}
 	return (0);
 }
