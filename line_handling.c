@@ -65,6 +65,8 @@ int operatorcheck(char *line, int count, char **env)
 			check = 1;
 		if (line[i] == '&' && line[i + 1] != '&')
 			check = 2;
+		if (line[i] == '|' && line[i + 1] != '|')
+			check = 3;
 		i++;
 	}
 	if (check == 1)
@@ -75,6 +77,11 @@ int operatorcheck(char *line, int count, char **env)
 	if (check == 2)
 	{
 		handle_operator(line, count, env, "&&");
+		return (0);
+	}
+	if (check == 3)
+	{
+		handle_operator(line, count, env, "||");
 		return (0);
 	}
 	return (-1);
@@ -103,6 +110,8 @@ int handle_operator(char *line, int count, char **env, char *delim)
 		handle_path(commands, count, env);
 		free_arr(commands);
 		if (errno != 0 && (strcmp(delim, "&&") == 0))
+			break;
+		if (errno == 0 && (strcmp(delim, "||") == 0))
 			break;
 	}
 	free_arr(split);
