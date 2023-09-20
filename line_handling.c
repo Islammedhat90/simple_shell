@@ -88,7 +88,7 @@ int operatorcheck(char *line, int count, char **env)
 	}
 	if (check == 4)
 	{
-		handle_dollar (line, count, env);
+		handle_dollar(line, count, env);
 		return (0);
 	}
 	return (-1);
