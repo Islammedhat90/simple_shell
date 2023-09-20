@@ -126,6 +126,15 @@ int handle_operator(char *line, int count, char **env, char *delim)
 	return (0);
 }
 
+/**
+ * handle_dollar - Handle environment variable substitution.
+ * @line: The input command line.
+ * @count: The line count.
+ * @env: The environment variables.
+ *
+ * Return: 1 if successful, 0 otherwise.
+ */
+
 int handle_dollar(char *line, int count, char **env)
 {
 	int i = 0;
@@ -162,14 +171,11 @@ int handle_dollar(char *line, int count, char **env)
 					free(commands[i]);
 					commands[i] = number;
 					errno = 0;
-					j++;
-				}
-				j++;
-			}
-		}
+					j++; }
+				j++; } }
 		j = 0;
-		i++;
-	}
+		i++; }
 	handle_path(commands, count, env);
+	free_arr(commands);
 	return (0);
 }
