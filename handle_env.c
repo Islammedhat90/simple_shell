@@ -92,6 +92,14 @@ int my_setenv(char **commands, char **env)
 	return (-1);
 }
 
+/**
+ * _unsetenv - Remove an environment variable.
+ * @commands: An array containing command arguments.
+ * @env: The current environment variables.
+ *
+ * Return: 0 on success, -1 on failure.
+ */
+
 int _unsetenv(char **commands, char **env)
 {
 	int count = 0, i = 0, j = 0, check = -1;
