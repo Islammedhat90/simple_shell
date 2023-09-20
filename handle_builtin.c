@@ -53,6 +53,9 @@ char *handledline, char **env)
 			return (2);
 		case 3:
 			return (-1);
+		case 4:
+			my_cd(commands);
+			return (4);
 		default:
 			return (-1);
 	}

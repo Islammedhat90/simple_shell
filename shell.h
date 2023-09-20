@@ -33,6 +33,7 @@ void my_exit(char **commands, int count, char *handledline);
 void my_env(char **env);
 int _setenv(char *var, char *value, char **env);
 int my_setenv(char **commands, char **env);
+int my_cd(char **commands);
 int _isdigit(char *number);
 int _atoi(char *str);
 

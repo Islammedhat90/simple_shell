@@ -32,7 +32,7 @@ char *_getenv(char *var)
 int _setenv(char *var, char *value, char **env)
 {
 	char *new = NULL;
-	int flag = -1;
+	int flag = -1, i = 0;
 	size_t len = 0;
 
 	if (var == NULL || value == NULL)
@@ -44,22 +44,24 @@ int _setenv(char *var, char *value, char **env)
 		perror("couldn't allocate memory");
 		return (-1);
 	}
+	new[0] = '\0';
 	strcat(new, var);
 	strcat(new, "=");
 	strcat(new, value);
-	while (*env != NULL)
+	while (env[i] != NULL)
 	{
-		if (strncmp(var, *env, len) == 0)
+		if (strncmp(var, env[i], len) == 0)
 		{
-			*env = new;
+			env[i] = new;
 			flag = 1;
+			printf("I don't come here?\n");
 		}
-		env++;
+		i++;
 	}
 	if (flag != 1)
 	{
-		*env = new;
-		*env++ = NULL;
+		env[i] = new;
+		env[i + 1] = NULL;
 	}
 	return (0);
 }
