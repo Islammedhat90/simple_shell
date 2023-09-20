@@ -139,6 +139,14 @@ int handle_dollar(char *line, __attribute__((unused))char **env)
 			number = print_number((int)pid);
 			write(1, number, strlen(number));
 			write(1, "\n", 1);
+			i++;
+		}
+		else if (line[i] == '$' && line[i + 1] == '?')
+		{
+			number = print_number(errno);
+			write(1, number, strlen(number));
+			write(1, "\n", 1);
+			i++;
 		}
 		i++;
 	}
