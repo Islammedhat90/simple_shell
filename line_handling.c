@@ -146,6 +146,7 @@ int handle_dollar(char *line, __attribute__((unused))char **env)
 			number = print_number(errno);
 			write(1, number, strlen(number));
 			write(1, "\n", 1);
+			errno = 0;
 			i++;
 		}
 		i++;
