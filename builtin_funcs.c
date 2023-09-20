@@ -62,7 +62,7 @@ void my_env(char **env)
  * Return: 0 if success, -1 otherwise.
  */
 
-int my_cd(char **commands)
+int my_cd(char **commands, char **env)
 {
 	int check = -1;
 	int count = command_count(commands);
@@ -85,6 +85,7 @@ int my_cd(char **commands)
 	}
 	if (chdir(dir) == 0)
 	{
+		_setenv("PWD", dir, env);
 		if (check == 1)
 		{
 			free(dir);

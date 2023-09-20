@@ -55,7 +55,7 @@ char *handledline, char **env)
 			_unsetenv(commands, env);
 			return (3);
 		case 4:
-			my_cd(commands);
+			my_cd(commands, env);
 			return (4);
 		default:
 			return (-1);
