@@ -39,20 +39,16 @@ void my_exit(char **commands, int count, char *handledline)
   * Return: nothing.
   */
 
-void my_env(char **env)
+void my_env(void)
 {
-	int i = 0, j = 0;
+	char **env = environ;
+	int i = 0;
 
-	while (env[i])
+	while (env[i] != NULL)
 	{
-		while (env[i][j])
-		{
-			write(1, &env[i][j], 1);
-			j++;
-		}
-		j = 0;
-		i++;
+		write(1, env[i], 1);
 		write(1, "\n", 1);
+		i++;
 	}
 }
 
