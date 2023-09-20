@@ -46,7 +46,7 @@ void my_env(void)
 
 	while (env[i] != NULL)
 	{
-		write(1, env[i], 1);
+		write(1, env[i], strlen(env[i]));
 		write(1, "\n", 1);
 		i++;
 	}
